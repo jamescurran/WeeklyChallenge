@@ -7,7 +7,7 @@ using Dapper;
 
 namespace DbCommon
 {
-    public class Repository
+    public class Repository : IRepository
     {
         private readonly string _connectionString;
         public Repository(string connectionString)
@@ -29,29 +29,25 @@ namespace DbCommon
             }
         }
 
-        public  List<TUser> ReadUsersAs<TUser>()
-        where TUser: UserModel
-        {
-            using (IDbConnection cnn = new SqlConnection(_connectionString))
-            {
-                return cnn.Query<TUser>("spSystemUser_Get", commandType: CommandType.StoredProcedure).ToList();
-            }
-        }
-
         public List<UserModel> ReadUsers() => ReadUsersAs<UserModel>();
 
 
-        public List<TUser> ReadFilteredUsersAs<TUser>(string filter)
+        public List<TUser> ReadUsersAs<TUser>(string filter=null)
             where TUser : UserModel
         {
             using (IDbConnection cnn = new SqlConnection(_connectionString))
             {
-                var p = new
+                object parameter = null;
+                string proc = "spSystemUser_Get";
+                if (filter != null)
                 {
-                    Filter = filter
-                };
-
-                return  cnn.Query<TUser>("spSystemUser_GetFiltered", p, commandType: CommandType.StoredProcedure).ToList();
+                    parameter = new
+                    {
+                        Filter = filter
+                    };
+                    proc = "spSystemUser_GetFiltered";
+                }
+                return  cnn.Query<TUser>(proc, parameter, commandType: CommandType.StoredProcedure).ToList();
             }
         }
 

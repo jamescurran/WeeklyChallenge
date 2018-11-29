@@ -1,5 +1,7 @@
 ﻿using DbCommon;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
 using System.Windows.Forms;
@@ -10,7 +12,7 @@ namespace WinFormApp
     {
         private readonly BindingList<SystemUserModel> _users = new BindingList<SystemUserModel>();
 
-        private readonly Repository _repository;
+        private readonly IRepository _repository;
 
         public Dashboard()
         {
@@ -41,14 +43,18 @@ namespace WinFormApp
 
         private void ReadFilteredUsers()
         {
-            _users.Clear();
-            _users.AddRange(_repository.ReadFilteredUsersAs<SystemUserModel>(filterUsersText.Text));
+            DisplayUsers(_repository.ReadUsersAs<SystemUserModel>(filterUsersText.Text));
         }
 
         private void ReadUsers()
         {
+            DisplayUsers(_repository.ReadUsersAs<SystemUserModel>());
+        }
+
+        private void DisplayUsers(IEnumerable<SystemUserModel> users)
+        {
             _users.Clear();
-            _users.AddRange(_repository.ReadUsersAs<SystemUserModel>());
+            _users.AddRange(users);
         }
     }
 
