@@ -1,19 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DemoLibrary;
 
 namespace ConsoleUI
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             PaymentProcessor paymentProcessor = new PaymentProcessor();
             for (int i = 0; i <= 10; i++)
             {
+                Console.WriteLine();
+                Console.WriteLine("Process item {0}", i);
                 try
                 {
                     var result = paymentProcessor.MakePayment($"Demo{i}", i);
@@ -24,23 +22,22 @@ namespace ConsoleUI
                 }
                 catch (IndexOutOfRangeException iore)
                 {
-                    Console.Write("Skipped invalid record ");
-                    iore.PrintInnerException();
+                    Console.WriteLine("Skipped invalid record ");
+                    iore.PrintException();
                 }
                 catch (FormatException fe) when (i != 5)
                 {
-                    Console.Write("Formatting Issue ");
-                    fe.PrintInnerException();
+                    Console.WriteLine("Formatting Issue ");
+                    fe.PrintException();
                 }
                 catch (ArithmeticException ae)
                 {
-                    Console.Write(ae.Message);
-                    ae.PrintInnerException();
+                    ae.PrintException();
                 }
                 catch (Exception ex)
                 {
-                    Console.Write($"Payment skipped for payment with {i} items ");
-                    ex.PrintInnerException();
+                    Console.WriteLine($"Payment skipped for payment with {i} items ");
+                    ex.PrintException();
                 }
 
                 Console.WriteLine();
@@ -51,10 +48,13 @@ namespace ConsoleUI
 
     static class ExceptionExtension
         {
-            public static void PrintInnerException(this Exception ex)
+            public static void PrintException(this Exception ex)
             {
-                if (ex.InnerException != null)
-                    Console.Write(ex.InnerException.Message);
+               while (ex != null)
+                {
+                    Console.WriteLine(ex.Message);
+                    ex = ex.InnerException;
+                }
             }
         }
     }
