@@ -2,15 +2,6 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/RefactoringChallengeStarterCode/.vs/DapperDemoDB/v15/Server/sqlite3
-/RefactoringChallengeStarterCode/ConsoleApp/bin/Debug
-/RefactoringChallengeStarterCode/ConsoleApp/obj/Debug
-/RefactoringChallengeStarterCode/DapperDemoDB/bin/Debug
-/RefactoringChallengeStarterCode/DapperDemoDB/obj/Debug
-/RefactoringChallengeStarterCode/DbCommon/bin/Debug
-/RefactoringChallengeStarterCode/DbCommon/obj/Debug
-/RefactoringChallengeStarterCode/WinFormApp/bin/Debug
-/RefactoringChallengeStarterCode/WinFormApp/obj/Debug
-/TextFileChallenge/.vs/TextFileChallenge/v15/Server/sqlite3
-/TextFileChallenge/TextFileChallenge/bin/Debug
-/TextFileChallenge/TextFileChallenge/obj/Debug
+/**/.vs/
+/**/bin/
+/**/obj/
