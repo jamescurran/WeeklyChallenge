@@ -1,12 +1,6 @@
 ﻿using System;
-using System.CodeDom;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using TextFileChallenge.Repository;
 
@@ -78,13 +72,13 @@ namespace TextFileChallenge
         private void addUserButton_Click(object sender, EventArgs e)
         {
             string msg = "";
-            if (String.IsNullOrWhiteSpace(this.firstNameText.Text))
+            if (String.IsNullOrWhiteSpace(firstNameText.Text))
                 msg += "First Name Cannot be blank" + Environment.NewLine;
 
-            if (String.IsNullOrWhiteSpace(this.lastNameText.Text))
+            if (String.IsNullOrWhiteSpace(lastNameText.Text))
                 msg += "Last Name Cannot be blank" + Environment.NewLine;
 
-            if (this.agePicker.Value == 0.0m)
+            if (agePicker.Value == 0.0m)
                 msg += "Enter an age" + Environment.NewLine;
 
             if (msg.Length > 0)
@@ -93,10 +87,10 @@ namespace TextFileChallenge
             {
                 var user = new UserModel
                 {
-                    FirstName = this.firstNameText.Text,
-                    LastName = this.lastNameText.Text,
-                    Age = (int) this.agePicker.Value,
-                    IsAlive = this.isAliveCheckbox.Checked
+                    FirstName = firstNameText.Text,
+                    LastName = lastNameText.Text,
+                    Age = (int) agePicker.Value,
+                    IsAlive = isAliveCheckbox.Checked
                 };
                 _users.Add(user);
                 WireUpDropDown();
