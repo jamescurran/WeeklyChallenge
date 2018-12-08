@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -74,6 +75,33 @@ namespace TextFileChallenge
             LoadUsers();
         }
 
+        private void addUserButton_Click(object sender, EventArgs e)
+        {
+            string msg = "";
+            if (String.IsNullOrWhiteSpace(this.firstNameText.Text))
+                msg += "First Name Cannot be blank" + Environment.NewLine;
+
+            if (String.IsNullOrWhiteSpace(this.lastNameText.Text))
+                msg += "Last Name Cannot be blank" + Environment.NewLine;
+
+            if (this.agePicker.Value == 0.0m)
+                msg += "Enter an age" + Environment.NewLine;
+
+            if (msg.Length > 0)
+                MessageBox.Show(msg, "Error", MessageBoxButtons.OK);
+            else
+            {
+                var user = new UserModel
+                {
+                    FirstName = this.firstNameText.Text,
+                    LastName = this.lastNameText.Text,
+                    Age = (int) this.agePicker.Value,
+                    IsAlive = this.isAliveCheckbox.Checked
+                };
+                _users.Add(user);
+                WireUpDropDown();
+            }
+        }
     }
 
     public static class Extensions

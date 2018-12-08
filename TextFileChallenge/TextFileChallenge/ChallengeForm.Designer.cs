@@ -140,6 +140,7 @@
             this.addUserButton.TabIndex = 10;
             this.addUserButton.Text = "Add User";
             this.addUserButton.UseVisualStyleBackColor = true;
+            this.addUserButton.Click += new System.EventHandler(this.addUserButton_Click);
             // 
             // saveListButton
             // 
