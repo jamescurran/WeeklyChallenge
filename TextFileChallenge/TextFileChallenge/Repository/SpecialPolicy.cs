@@ -13,6 +13,10 @@ namespace TextFileChallenge.Repository
         public string Heading => "LastName,FirstName,IsAlive,Age";
 
         public string Filename => "SpecialDataSet.csv";
+        public bool CheckHeader(string header)
+        {
+            return Heading == header;
+        }
 
         public UserModel Create(string[] parts)
         {

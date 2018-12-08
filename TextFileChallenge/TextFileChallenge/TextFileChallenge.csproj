@@ -61,6 +61,7 @@
     <Compile Include="Repository\StandardPolicy.cs" />
     <Compile Include="Repository\UserModel.cs" />
     <Compile Include="Repository\UserRepo.cs" />
+    <Compile Include="Repository\VariablePolicy.cs" />
     <EmbeddedResource Include="ChallengeForm.resx">
       <DependentUpon>ChallengeForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -89,6 +90,7 @@
     <Content Include="StandardDataSet.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="ReadMe.md" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -10,6 +10,10 @@ namespace TextFileChallenge.Repository
 
         public string Filename => "AdvancedDataSet.csv";
 
+        public bool CheckHeader(string header)
+        {
+            return Heading == header;
+        }
         public UserModel Create(string[] parts)
         {
             return new UserModel

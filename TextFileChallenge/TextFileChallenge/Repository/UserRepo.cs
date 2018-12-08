@@ -16,7 +16,7 @@ namespace TextFileChallenge.Repository
         public List<UserModel> Read()
         {
             var lines = File.ReadAllLines(_policy.Filename);
-            if (lines[0] != _policy.Heading)
+            if (!_policy.CheckHeader(lines[0]))
                 throw  new ApplicationException("Bad file format");
 
             return lines.Skip(1).Select(line => line.Split(',')).Select(_policy.Create).ToList();

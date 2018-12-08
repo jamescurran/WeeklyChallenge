@@ -8,5 +8,7 @@ namespace TextFileChallenge.Repository
         String OutputFormat { get; }
         string Heading { get; }
         string Filename { get; }
+
+        bool CheckHeader(string header);
     }
 }

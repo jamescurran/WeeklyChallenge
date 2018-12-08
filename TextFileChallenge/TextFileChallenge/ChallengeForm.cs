@@ -59,7 +59,7 @@ namespace TextFileChallenge
                     policy  = new StandardPolicy();
                     break;
                 case "Advanced":
-                    policy = new AdvancedPolicy();
+                    policy = new VariablePolicy();
                     break;
                 case "Special":
                     policy = new SpecialPolicy();
